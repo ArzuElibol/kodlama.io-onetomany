@@ -4,7 +4,6 @@ import java.util.List;
 
 import relationship.onetomany.business.requests.ProgramingLanguageRequest;
 import relationship.onetomany.business.responses.PrograminLanguageResponse;
-import relationship.onetomany.business.responses.TechnologyResponse;
 import relationship.onetomany.entities.concretes.ProgramingLanguage;
 
 public interface ProgramingLanguageService {
@@ -18,6 +17,6 @@ public interface ProgramingLanguageService {
 
     ProgramingLanguage getById(int id);
     
-    List<TechnologyResponse> findTechnologyWithLanguageId( int id);  
+    // List<TechnologyResponse> findTechnologyWithLanguageId( int id);  
 
 }

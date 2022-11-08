@@ -8,22 +8,19 @@ import org.springframework.stereotype.Service;
 import relationship.onetomany.business.abstracts.ProgramingLanguageService;
 import relationship.onetomany.business.requests.ProgramingLanguageRequest;
 import relationship.onetomany.business.responses.PrograminLanguageResponse;
-import relationship.onetomany.business.responses.TechnologyResponse;
 import relationship.onetomany.dataAccess.abstracts.ProgramingLanguageRepository;
-import relationship.onetomany.dataAccess.abstracts.TechnologyRepository;
 import relationship.onetomany.entities.concretes.ProgramingLanguage;
-import relationship.onetomany.entities.concretes.Technology;
+
 
 @Service
 public class ProgramingLanguageManager implements ProgramingLanguageService {
 
     private ProgramingLanguageRepository programingLanguageRepository;
-    private TechnologyRepository technologyRepository;
+    // private TechnologyRepository technologyRepository;
 
-    public ProgramingLanguageManager(ProgramingLanguageRepository programingLanguageRepository,
-        TechnologyRepository technologyRepository) {
+    public ProgramingLanguageManager(ProgramingLanguageRepository programingLanguageRepository) { //,TechnologyRepository technologyRepository
         this.programingLanguageRepository = programingLanguageRepository;
-        this.technologyRepository = technologyRepository;
+        // this.technologyRepository = technologyRepository;
     }
 
     @Override
@@ -60,29 +57,29 @@ public class ProgramingLanguageManager implements ProgramingLanguageService {
         return programingLanguageRepository.getReferenceById(id);
     }
 
-    @Override
-    public List<TechnologyResponse> findTechnologyWithLanguageId(int id) {
-        List<Technology> technology = technologyRepository.findAll();
-        List<TechnologyResponse> technologyResponses = new ArrayList<TechnologyResponse>();
-        for (Technology technology2 : technology) {
-            TechnologyResponse responseItem = new TechnologyResponse();
-            responseItem.setProgramingLanguageId(technology2.getProgramingLanguage().getId());
-            responseItem.setId(technology2.getId());
+    // @Override
+    // public List<TechnologyResponse> findTechnologyWithLanguageId(int id) {
+    //     List<Technology> technology = technologyRepository.findAll();
+    //     List<TechnologyResponse> technologyResponses = new ArrayList<TechnologyResponse>();
+    //     for (Technology technology2 : technology) {
+    //         TechnologyResponse responseItem = new TechnologyResponse();
+    //         responseItem.setProgramingLanguageId(technology2.getProgramingLanguage().getId());
+    //         responseItem.setId(technology2.getId());
 
-            if (responseItem.getProgramingLanguageId() == (id)) {
-                technologyResponses.add(responseItem);
-            }
-        }
-        return technologyResponses;
-    }
+    //         if (responseItem.getProgramingLanguageId() == (id)) {
+    //             technologyResponses.add(responseItem);
+    //         }
+    //     }
+    //     return technologyResponses;
+    // }
 
     @Override
     public void delete(int id) {
 
-        List<TechnologyResponse> technologyResponses =this.findTechnologyWithLanguageId(id);
-        for (TechnologyResponse technologyResponse : technologyResponses) {
-        technologyRepository.deleteById(technologyResponse.getId());
-        }
+        // List<TechnologyResponse> technologyResponses =this.findTechnologyWithLanguageId(id);
+        // for (TechnologyResponse technologyResponse : technologyResponses) {
+        // technologyRepository.deleteById(technologyResponse.getId());
+        // }
         programingLanguageRepository.deleteById(id);
 
     }

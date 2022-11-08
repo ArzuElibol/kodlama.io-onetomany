@@ -3,8 +3,10 @@ package relationship.onetomany.entities.concretes;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,8 +31,22 @@ public class ProgramingLanguage {
 
     private String name;
 
-    @OneToMany  //(mappedBy = "programingLanguage")
+    
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "ProgramingLanguage", fetch = FetchType.LAZY, targetEntity = Technology.class)
+   // @OneToMany  //(mappedBy = "programingLanguage")
     @JoinColumn(name = "PrograminLanguageId")
     Set<Technology> technologies;
     //private Technology technology; 
 }
+
+
+
+
+	// cascadeType.ALL = language de yapilan bir degisiklik ona bagli teknolojileri de etkilesin
+	
+	// mappedBy = Technology sinifa baglidir. yani iliskinin asil sahibini Technology sinifi yapilir
+	// mappedBy'in degerine Technology sinifindaki field adi verilir
+	
+	// fetchType.LAZY = language bagli teknolojilerin hepsi birden gelmesin yapilan istege gore gelsin
+	
+	// targetEntity = Technology sinifini isaret eder
